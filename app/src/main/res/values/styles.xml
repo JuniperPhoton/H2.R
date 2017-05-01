@@ -15,10 +15,10 @@
     </style>
 
     <style name="TimeTextView">
-        <item name="android:shadowDx">5</item>
-        <item name="android:shadowDy">5</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">0</item>
         <item name="android:shadowColor">@color/shadowColor</item>
-        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowRadius">15</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_width">wrap_content</item>
         <item name="android:textSize">@dimen/text_size_main</item>
