@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:minWidth="240dp"
+                    android:minHeight="140dp"
+                    android:updatePeriodMillis="60000"
+                    android:initialLayout="@layout/time_layout"
+                    android:configure="com.juniperphoton.h2r.MainActivity"
+                    android:resizeMode="horizontal|vertical"
+                    android:widgetCategory="home_screen"/>
