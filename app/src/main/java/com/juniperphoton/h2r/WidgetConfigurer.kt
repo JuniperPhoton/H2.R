@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
+import com.juniperphoton.h2r.activity.AlarmActivity
 import com.juniperphoton.h2r.activity.MainActivity
 import java.util.*
 
@@ -48,7 +49,7 @@ object WidgetConfigurer {
             remoteViews.setTextColor(R.id.hour_text_view_1, Color.WHITE)
         }
 
-        var intent = Intent(ctx, MainActivity::class.java)
+        var intent = Intent(ctx, AlarmActivity::class.java)
         var pendingIntent = PendingIntent.getActivity(ctx, 0, intent, 0)
         remoteViews.setOnClickPendingIntent(R.id.root, pendingIntent)
 

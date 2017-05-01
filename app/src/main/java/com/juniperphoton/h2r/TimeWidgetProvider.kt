@@ -16,7 +16,12 @@ class TimeWidgetProvider : AppWidgetProvider() {
             WidgetConfigurer.update(context!!, it)
         }
         receiver = UpdateBroadcastReceiver()
-        context?.applicationContext?.registerReceiver(receiver, IntentFilter(Intent.ACTION_TIME_TICK))
+
+        var filter = IntentFilter()
+        filter.addAction(Intent.ACTION_TIME_TICK)
+        filter.addAction(Intent.ACTION_TIME_CHANGED)
+        filter.addAction(Intent.ACTION_TIMEZONE_CHANGED)
+        context!!.applicationContext!!.registerReceiver(receiver, filter)
     }
 
     override fun onEnabled(context: Context?) {
