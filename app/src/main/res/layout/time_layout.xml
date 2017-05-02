@@ -25,6 +25,7 @@
     </LinearLayout>
 
     <TextView
+        android:layout_marginTop="-15dp"
         android:id="@+id/min_text_view"
         style="@style/TimeTextView"
         android:text="12"/>
