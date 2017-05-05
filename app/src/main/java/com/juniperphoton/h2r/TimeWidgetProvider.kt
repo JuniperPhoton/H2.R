@@ -1,37 +1,22 @@
 package com.juniperphoton.h2r
 
+import android.app.AlarmManager
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
-import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.content.IntentFilter
-import com.juniperphoton.h2r.receiver.UpdateBroadcastReceiver
+import com.juniperphoton.h2r.service.UpdateService
 
 class TimeWidgetProvider : AppWidgetProvider() {
-    private var receiver: BroadcastReceiver? = null
-
     override fun onUpdate(context: Context?, appWidgetManager: AppWidgetManager?, appWidgetIds: IntArray?) {
         appWidgetIds!!.map {
             WidgetConfigurer.update(context!!, it)
         }
-        receiver = UpdateBroadcastReceiver()
+        var intent = Intent(context, UpdateService::class.java)
+        var pendingIntent = PendingIntent.getService(context, 0, intent, 0)
 
-        var filter = IntentFilter()
-        filter.addAction(Intent.ACTION_TIME_TICK)
-        filter.addAction(Intent.ACTION_TIME_CHANGED)
-        filter.addAction(Intent.ACTION_TIMEZONE_CHANGED)
-        context!!.applicationContext!!.registerReceiver(receiver, filter)
-    }
-
-    override fun onEnabled(context: Context?) {
-        super.onEnabled(context)
-    }
-
-    override fun onDisabled(context: Context?) {
-        super.onDisabled(context)
-        if (receiver != null) {
-            context?.applicationContext?.unregisterReceiver(receiver)
-        }
+        var am = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        am.setRepeating(AlarmManager.RTC, 0, 60 * 1000, pendingIntent)
     }
 }

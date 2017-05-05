@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.widget.RemoteViews
 import com.juniperphoton.h2r.activity.AlarmActivity
-import com.juniperphoton.h2r.activity.MainActivity
 import java.util.*
 
 object WidgetConfigurer {
