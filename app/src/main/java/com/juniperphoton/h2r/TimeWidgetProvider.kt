@@ -10,13 +10,13 @@ import com.juniperphoton.h2r.service.UpdateService
 
 class TimeWidgetProvider : AppWidgetProvider() {
     override fun onUpdate(context: Context?, appWidgetManager: AppWidgetManager?, appWidgetIds: IntArray?) {
-        appWidgetIds!!.map {
+        appWidgetIds?.forEach {
             WidgetConfigurer.update(context!!, it)
         }
-        var intent = Intent(context, UpdateService::class.java)
-        var pendingIntent = PendingIntent.getService(context, 0, intent, 0)
+        val intent = Intent(context, UpdateService::class.java)
+        val pendingIntent = PendingIntent.getService(context, 0, intent, 0)
 
-        var am = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val am = context!!.getSystemService(Context.ALARM_SERVICE) as AlarmManager
         am.setRepeating(AlarmManager.RTC, 0, 60 * 1000, pendingIntent)
     }
 }
