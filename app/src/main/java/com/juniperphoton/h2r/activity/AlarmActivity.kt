@@ -1,21 +1,18 @@
 package com.juniperphoton.h2r.activity
 
-import android.appwidget.AppWidgetManager
 import android.content.ActivityNotFoundException
-import android.content.ComponentName
 import android.content.Intent
 import android.os.Bundle
 import android.provider.AlarmClock
 import android.support.v7.app.AppCompatActivity
-import com.juniperphoton.h2r.TimeWidgetProvider
+import com.juniperphoton.h2r.AppWidgetHelper
 import com.juniperphoton.h2r.WidgetConfigurer
 
 class AlarmActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        var ids = AppWidgetManager.getInstance(this).getAppWidgetIds(ComponentName(this, TimeWidgetProvider::class.java))
-        ids.map {
+        AppWidgetHelper.doWithWidgetId(this) {
             WidgetConfigurer.update(this, it)
         }
 
